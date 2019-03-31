@@ -6,7 +6,6 @@ from .models import *
 
 
 def login(request):
-    err=""
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['pswd']
@@ -22,7 +21,7 @@ def login(request):
         except ObjectDoesNotExist:
             err = "Invalid User"
             return render(request,"login.html",{"err":err,})
-    return render(request,"login.html",{"err":"",})
+    return render(request,"login.html",{})
 
 def signup(request):
     if request.method == 'POST':
@@ -30,9 +29,12 @@ def signup(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         pswd = request.POST['pswd']
+        confirm_pswd = request.POST['pswd2']
         email = request.POST['email']
-        User.objects.create_user(username=username,email=email,password=pswd,first_name=first_name,last_name=last_name)
-        return redirect('login')
+        if confirm_pswd == pswd:
+            User.objects.create_user(username=username,email=email,password=pswd,first_name=first_name,last_name=last_name)
+            return redirect('login')
+        return render(request, 'signup.html', {'err':'Password didnot match'})
     return render(request, 'signup.html', {})
 
 def home(request):
