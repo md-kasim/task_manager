@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block head_title %}Teams Joined || {{ block.super }}{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+    <br>
+        <div class="row">
+        {% for key,teams in all_teams.items %}
+            <div class="col-md-11 offset-md-1"><div class="btn btn-dark btn-block btn-lg my-3">
+                {% if key == 'my_teams' %}
+                My Teams
+                {% else %}
+                Other Teams
+                {% endif %}
+            </div></div>
+        {% if teams %}
+            {% for team in teams %}
+            <div class="col-md-11 offset-md-1">
+                <div class="card shadow my-3">
+                        <div class="card-header">
+                            Team : {{ team.team_name }}
+                        </div>
+                        <div class="card-body">
+                            Owner : {{ team.owner }}
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ team.team_url }}"><div class="btn btn-success mx-1" style="float: right;">View more</div></a>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <div class="col-md-11 offset-md-1 text-center"><div class="btn btn-secondary btn-lg btn-block disabled py-5 my-5 shadow">
+                {% if key == 'my_team' %}
+                    You have not created any team
+                {% else %}
+                    You haven,t joined in Other's Teams
+                {% endif %}
+            </div></div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

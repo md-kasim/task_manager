@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block head_title %}
+    {{ task_name }} || {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+            <div class="card shadow h5">
+                <div class="card-header py-0 bg-light">
+                    <div class="card-title py-1">
+                        <h1 class="text-center">{{ title }}</h1>
+                        <p class="text-right font-italic"> - By {{ creator }}</p>
+                    </div>
+                    <div class="card-subtitle">
+                        <p>Date : {{ date }}
+                            <span class=" float-right">Team Name : {{ team_name }}</span></p>
+                    </div>
+                </div>
+                <div class="card-body bg-light">
+                    <h3 class="text-center text-justify">Description</h3>
+                    <p class="pb-5 text-justify" style="text-indent: 60px;" >{{ des }}</p>
+                    <p>Status : {{ status }}</p>
+                    <p>
+                        Assigned to :
+                        {% for user in assigned_to %}
+                        {{ user }},
+                        {% endfor %}
+                    </p>
+                </div>
+            {% if editable %}
+                <div class="card-footer">
+                    <a href="edit/" class="float-right"><div class="btn btn-lg btn-warning">Edit</div></a>
+                </div>
+            {% endif %}
+            </div>
+            </div>
+            <div class="col-md-10 offset-md-1 mt-5">Comments</div>
+            {% if comments %}
+            {% for comment in comments %}
+            <div class="col-md-10 offset-md-1 my-4 h4"><i class="far fa-user-circle"></i> {{ comment.commentor }} <span class="text-secondary h6">{{ comment.date }}</span>
+                <div class="alert alert-info my-2 ml-4 text-justify h5" style="text-indent: 50px;">
+                    {{ comment.text }}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <div class="col-md-10 offset-md-1 my-4"><div class="alert alert-info my-2 text-center">No Comments to show</div></div>
+            {% endif %}
+            <div class="col-md-10 offset-md-1 mt-5">
+                <form action="" method="post">
+                {% csrf_token %}
+                    <label for="comment">Comment : </label><br>
+                    <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Write your comment"></textarea>
+                    <input type="submit" class="btn btn-info btn-block btn-lg mt-3 mb-5" value="Post">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

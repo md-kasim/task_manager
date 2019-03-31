@@ -1,0 +1,23 @@
+{% extends "createtask.html" %}
+{% block head_title %}
+    {{ task_name }} || {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+    {{ block.super }}
+    <script>
+        document.getElementById('title').value = "{{ title }}";
+        document.getElementById('description').value = "{{ description }}";
+        document.getElementById('team-lbl').hidden = true;
+        document.getElementById('team_name').hidden = true;
+        var input = document.createElement('input');
+        input.setAttribute('name','teamname');
+        input.setAttribute('hidden',true);
+        input.setAttribute('value','{{ teamname }}');
+        var div = document.getElementById('task');
+        div.appendChild(input);
+        document.getElementById('assignee').value =
+            "{% for user in assignees %}{{ user }},{% endfor %}";
+        document.getElementById('status').value = "{{ status }}";
+        document.getElementById('submit').value = "Update";
+    </script>
+{% endblock content %}

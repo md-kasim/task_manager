@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block head_title %}Create Task || {{ block.super }}{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+        <form action="" method="post">
+        {%  csrf_token %}
+            <br>
+            <div class="row">
+                <div class="btn btn-success btn-lg disabled col-md-11 offset-md-1 py-2 my-3">Create Task</div>
+                {% if members %}
+                    <div class="col-md-10 offset-md-1">
+                        <div class="alert alert-danger">
+                            {% for x in members %}
+                                {{ x }},
+                            {% endfor %} doesnot exist in the team entered
+                        </div>
+                    </div>
+                {% endif %}
+                {% if err %}
+                    <div class="col-md-10 offset-md-1">
+                        <div class="alert alert-danger">
+                            {{ err }}
+                        </div>
+                    </div>
+                {% endif %}
+                <div id="task"></div>
+                <label for="title" class="col-md-3 offset-md-1 my-2">Title : </label>
+                <input type="text" class="form-control col-md-8 my-2" name="title" id="title" placeholder="Write a Title" pattern="[A-Za-z0-9 ]+" title="Only Letters, Numbers and Whitespaces are allowed" required>
+                <label for="description" class="col-md-3 offset-md-1 my-2">Description : </label>
+                <textarea class="form-control col-md-8 my-2" name="description" id="description" rows="5" placeholder="Write the description of your task" required></textarea>
+                <label for="team_name" class="col-md-3 offset-md-1 my-2" id="team-lbl">Team Name</label>
+                <select class="form-control col-md-8 my-2" name="team_name" id="team_name">
+                    <option>No Team</option>
+                    {% for team_name in teams %}
+                        <option>{{ team_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="assignee" class="col-md-3 offset-md-1 my-2">Assigned To : </label>
+                <input type="text" class="form-control col-md-8 my-2" name="assignee" id="assignee" placeholder="Username of Assignees separated with commas">
+                <label for="status" class="col-md-3 offset-md-1 my-2">Status : </label>
+                <select class="form-control col-md-8 my-2" name="status" id="status">
+                    <option>Planned</option>
+                    <option>InProgress</option>
+                    <option>Done</option>
+                </select>
+            <input type="submit" class="btn btn-primary btn-lg col-md-11 offset-md-1 my-2" id="submit">
+            </div>
+            <br>
+        </form>
+    </div>
+{% endblock content %}

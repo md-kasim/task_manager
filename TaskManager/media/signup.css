@@ -1,0 +1,65 @@
+* {
+    font-weight: bold;
+}
+form {
+    font-size: 20px;
+    padding: 5px 10px;
+}
+.req {
+    font-size: 15px;
+    color :red;
+}
+input[type=password], input[type=text],select, textarea {
+    width: 98%;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 7px 0px 12px 0px;
+}
+textarea {
+    height: 100px;
+    padding: 10px 10px;
+}
+input[type=submit]{
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    background-color: #4caf50;
+    border: hidden;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 5px 50px;
+}
+input[type=submit]:hover{
+    background-color: #45a049;
+}
+#link1{
+    text-align: center;
+}
+a:link{
+    color: red;
+}
+a:visited{
+    color:red;
+}
+.block, form{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+}
+.login-block{
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+}
+@media (max-width: 800px) {
+    .login-block{
+        width: 100%;
+        padding: 20px;
+    }
+}
