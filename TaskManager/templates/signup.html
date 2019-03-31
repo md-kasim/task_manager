@@ -17,6 +17,11 @@
     <input type="password" name="pswd" placeholder="Choose a Password"><br>
     <label>Confirm Password : </label>
     <input type="password" name="pswd2" placeholder="Confirm Password"><br>
+    {% if err %}
+        <div style="font-size: 14px; padding-bottom: 14px; color: #ff0000;">
+            <br>{{ err }}<br>
+        </div>
+    {% endif %}
     <label>First Name : </label><br>
     <input type="text" name="first_name" placeholder="Enter your First Name" pattern="[A-Za-z0-9]+" title="Only Letters and Numbers are allowed"><br>
     <label>Last Name : </label><br>
