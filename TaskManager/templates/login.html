@@ -18,9 +18,9 @@
         </div>
     {% endif %}
     <label>UserName : </label>
-    <input type=text name="username" placeholder="UserName"><br>
+    <input type=text name="username" placeholder="UserName" required><br>
     <label>Password : </label>
-    <input type=password name="pswd" placeholder="Password"><br>
+    <input type=password name="pswd" placeholder="Password" required><br>
     <input type="submit" name="login" value="LOGIN"><br>
 </form>
     <p id="link1"><a href="{% url 'register' %}">New User ? Register here</a></p>
