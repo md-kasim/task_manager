@@ -12,15 +12,15 @@
     {%  csrf_token %}
     <!--{ form.as_p }}-->
     <label>UserName : </label>
-    <input type="text" name="username" placeholder="Choose a User Name"><br>
+    <input type="text" name="username" placeholder="Choose a User Name" pattern="[A-Za-z0-9]+" title="Only Letters and Numbers are allowed"><br>
     <label>Password : </label>
     <input type="password" name="pswd" placeholder="Choose a Password"><br>
     <label>Confirm Password : </label>
     <input type="password" name="pswd2" placeholder="Confirm Password"><br>
     <label>First Name : </label><br>
-    <input type="text" name="first_name" placeholder="Enter your First Name"><br>
+    <input type="text" name="first_name" placeholder="Enter your First Name" pattern="[A-Za-z0-9]+" title="Only Letters and Numbers are allowed"><br>
     <label>Last Name : </label><br>
-    <input type="text" name="last_name" placeholder="Enter your Last Name"><br>
+    <input type="text" name="last_name" placeholder="Enter your Last Name" pattern="[A-Za-z0-9]+" title="Only Letters and Numbers are allowed"><br>
     <label>E-mail ID : </label><br>
     <input type="text" name="email" placeholder="Enter your E-mail ID"><br>
     <input type="submit" name="signup" value="SIGN UP"><br>
