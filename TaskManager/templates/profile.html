@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block head_title %}My Profile || {{ block.super }}{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+        <div class="row">
+            <div class="col-md-11 text-center h2 text-primary font-weight-bold my-4">
+                <u>My Profile</u>
+            </div>
+            <div class="col-md-4 offset-md-2 my-5">
+                <div class="row">
+                    <div class="col-md-10 my-2">
+                        User Name
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                    <div class="col-md-10 my-2">
+                        First Name
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                    <div class="col-md-10 my-2">
+                        Last Name
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                    <div class="col-md-10 my-2">
+                        E-mail ID
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1 my-5">
+                <div class="row">
+                    <div class="col-md-10 my-2">
+                        {{ user_name }}<br>
+                    </div>
+                    <div class="col-md-10 my-2">
+                        {{ first_name }}<br>
+                    </div>
+                    <div class="col-md-10 my-2">
+                        {{ last_name }}<br>
+                    </div>
+                    <div class="col-md-10 my-2">
+                        {{ email }}<br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 offset-md-1 my-4">
+                <div class="text-center">
+                    <a href="/profile/{{ user_name }}/edit/" class="btn btn-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

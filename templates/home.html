@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block head_title %}
+    Home || {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+    <div class="row">
+    {% for key, value in all_task.items %}
+    <div class="col-md-11 offset-md-1"><div class="btn btn-success btn-lg btn-block disabled my-4">
+        {% if key == 'my_tasks' %}
+            My Tasks
+        {% else %}
+            Other Tasks
+        {% endif %}
+    </div></div>
+    {% if value %}
+        {% for team, tasks in value.items %}
+            <div class="col-md-11 offset-md-1"><div class="btn btn-outline-danger btn-lg btn-block disabled my-3">{{ team }}</div></div>
+        <div class="col-md-11 offset-md-1">
+            {% for task in tasks %}
+        	    <div class="card shadow card-block my-2">
+            	    <div class="card-header">{{ task.title }}</div>
+                	<div class="card-body">
+                		<h5 class="card-title">Assigned to : </h5>
+                    	<h5 class="card-subtitle">
+                        	{% for assigned_to in task.assignees %}
+                            	{{ assigned_to }}<br>
+                        	{% endfor %}
+                    	</h5>
+                	</div>
+                <div class="card-footer">
+                    <p class="card-text h6">
+                    	{{ task.description }}...
+                        <a href="{{ task.url }}" class="card-link h6">Read more</a>
+                	</p>
+                </div>
+            	</div>
+           	{% endfor %}
+        </div>
+        {% endfor %}
+        {% else %}
+            <div class="col-md-11 offset-md-1 text-center"><div class="btn btn-secondary btn-lg btn block disabled py-5 my-5 shadow">
+                {% if key == 'my_tasks' %}
+                    You have not created any task
+                {% else %}
+                    No Other Task to show
+                {% endif %}
+            </div></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+{% endblock content %}

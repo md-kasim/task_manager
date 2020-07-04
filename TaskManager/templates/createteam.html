@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block head_title %}Create Team || {{ block.super }}{% endblock head_title %}
+{% block content %}
+<script type="text/javascript">
+    var no = 0;
+    function setAttributes(element,attr){
+        for(var key in attr){
+                element.setAttribute(key, attr[key]);
+        }
+    }
+    function remove(x) {
+        var user = document.getElementById('member'+x.toString());
+        user.remove();
+    }
+    function adduser() {
+        var member = 'member'+no.toString();
+        var user = document.getElementById('adduser');
+        var div = document.createElement('div');
+        setAttributes(div,{'class':'row','id':member,'style':'margin:15px 0px;'});
+        var divinput = document.createElement('div');
+        divinput.setAttribute('class','col-md-11');
+        var input = document.createElement('input');
+        setAttributes(input,{'type':'text','class':'form-control','name':'member'+no.toString(),'placeholder':'UserName','pattern':'[A-Za-z0-9]+','title':'Only Letters, Numbers and Whitespaces are allowed','required':true});
+        divinput.appendChild(input);
+        div.appendChild(divinput);
+        var divBtn = document.createElement('div');
+        divBtn.setAttribute('class','col-md-1');
+        var a = document.createElement('a');
+        setAttributes(a,{'class':'btn btn-danger text-light','onclick':'remove('+ no.toString()+' )'});
+        var i = document.createElement('i');
+        i.setAttribute('class','fa fa-minus');
+        a.appendChild(i);
+        divBtn.appendChild(a);
+        div.appendChild(divBtn);
+        user.appendChild(div);
+        no=no+1;
+    }
+    function getno() {
+        document.getElementById('noOfuser').value = no.toString();
+    }
+</script>
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="btn btn-lg btn-secondary btn-block my-4 py-3" disabled>Create Team</div>
+            </div>
+            {% if members %}
+                <div class="col-md-10 offset-md-1">
+                    <div class="alert alert-danger">
+                        {% for x in members %}
+                            {{ x }},
+                        {% endfor %} doesnot exist
+                    </div>
+                </div>
+            {% endif %}
+            {% if err %}
+                <div class="col-md-10 offset-md-1">
+                    <div class="alert alert-danger">
+                        {{ err }}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-md-10 offset-md-1">
+            <form action="" method="post" onsubmit="getno()">
+                {% csrf_token %}
+                <div class="card shadow">
+                <div class="card-header text-light bg-dark">
+                    Name of Team :
+                </div>
+                <div class="card-body">
+                    <input type="text" class="form-control" name="teamname" placeholder="Name of the Team" pattern="[A-Za-z0-9 ]+" title="Only Letters, Numbers and Whitespaces are allowed" required>
+                </div>
+                </div>
+                <div class="card shadow my-4">
+                    <div class="card-header text-light bg-dark">
+                        Members :
+                    </div>
+                    <div class="card-body">
+                        <div id="adduser">
+                        <script>
+                            adduser();
+                        </script>
+                        </div>
+                        <input type="text" name="no" id="noOfuser" hidden>
+                        <div class="col-md-1 offset-md-5">
+                            <a class="btn btn-success text-light my-1" onclick="adduser()"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="col-md-2 offset-md-10">
+                            <input class="btn btn-block btn-success" type="submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block head_title %}Edit Profile || {{ block.super }}{% endblock head_title %}
+{% block content %}
+    <div class="col-md-10 col px-5 pl-md-2 pt-2 main mx-auto h4">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-11 offset-md-1 text-center h2 text-primary font-weight-bold my-4">
+                <u>Edit Profile</u>
+            </div>
+            <div class="col-md-4 offset-md-2 my-5">
+                <div class="row">
+                    <div class="col-md-10 my-2">
+                        First Name
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                    <div class="col-md-10 my-2">
+                        Last Name
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                    <div class="col-md-10 my-2">
+                        E-mail ID
+                    </div>
+                    <div class="col-md-1 my-2">
+                        :
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1 my-5">
+                <div class="row">
+                    <div class="col-md-10 my-1">
+                        <input type="text" class="form-control" name="first_name" value="{{ first_name }}" pattern="[a-zA-Z]+" title="Only Letters are allowed" required>
+                    </div>
+                    <div class="col-md-10 my-1">
+                        <input type="text" class="form-control" name="last_name" value="{{ last_name }}" pattern="[A-Za-z]+" title="Only Letters are allowed" required>
+                    </div>
+                    <div class="col-md-10 my-1">
+                        <input type="email" class="form-control" name="email" value="{{ email }}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 offset-md-2 my-2">
+                <div class="text-center ml-3">
+                    <input type="submit" class="form-control btn btn-danger btn-lg">
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+{% endblock %}

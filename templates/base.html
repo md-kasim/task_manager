@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+        <title>{% block head_title %}{% endblock head_title %}Task Manager</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/glyphicon.css">
+        <link rel="stylesheet" href="/static/css/fonts.css">
+        <link rel="stylesheet" href="/static/sidebar.css">
+        {% block link %}{% endblock link %}
+    </head>
+
+    <body>
+    <nav class="navbar navbar-danger bg-warning navbar-expand-sm sticky-top">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="navbar-item"><a href="#" data-target="#sidebar" data-toggle="collapse" aria-expanded="false"><i class="fas fa-bars fa-2x py-1 p-1"></i></a>&nbsp&nbsp&nbsp</li>
+                <li class="navbar-item"><a href="{% url 'home' %}" class="nav-link"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="navbar-item"><div class="nav-link"> Hi, {{ request.user }}</div></li>
+            </ul>
+            <span class="mr-auto"></span>
+            <ul class="navbar-nav">
+                <li class="navbar-item"><a href="{% url 'logout' %}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width sticky-top" id="sidebar">
+            <div class="list-group border-0 card text-center text-md-left">
+                <a href="{% url 'home' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Tasks</span></a>
+                <a href="{% url 'createtask' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Create Task</span></a>
+                <a href="{% url 'teams' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="far fa-address-card"></i> <span class="d-none d-md-inline">Manage Teams</span></a>
+                <a href="{% url 'createteam' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="fas fa-users"></i> <span class="d-none d-md-inline">Create Team</span></a>
+                <a href="{% url 'profile' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="fas fa-user"></i> <span class="d-none d-md-inline">My Profile</span></a>
+                <a href="{% url 'contact' %}" class="list-group-item d-inline-block collapse" data-parent="#sidebar"><i class="fas fa-sign-out-alt"></i> <span class="d-none d-md-inline">Contact</span></a>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+<div class="page-footer bg-success text-center text-light shadow">
+    <div class="footer fixed-bottom bg-success">
+        <h5 >© Muhammad Kasim</h5>
+    </div>
+</div>
+        <script src="/static/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    </body>
+</html>
